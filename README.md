@@ -13,7 +13,7 @@
 ## Screenshots
 
 ### Home Page
-![Home Screen](https://drive.google.com/file/d/19SZPbYcU82YNHT4FMizKUqpTrwAQllSn/view?usp=drive_link)
+![Home Screen](Screenshot_2024-11-19-23-59-18-62_7a14a39dca1d0f5115802ea3e4fb6dd7.jpg)
 
 ### Coin Details
 ![Coin Details Screen](https://drive.google.com/file/d/19SWksT2u7d_g34X1SnQB0g9ggljmazKe/view?usp=drive_link)

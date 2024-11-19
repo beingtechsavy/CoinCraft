@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -43,7 +44,12 @@ android {
 dependencies {
 
 
+    // Core Compose UI
 
+    val nav_version = "2.8.4"
+
+    // Jetpack Compose integration
+    implementation("androidx.navigation:navigation-compose:$nav_version")
     // Retrofit for making network requests
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
 

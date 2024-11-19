@@ -13,7 +13,7 @@
 ## Screenshots
 
 ### Home Page
-![Home Screen]()
+![Home Screen](home.jpg)
 
 ### Coin Details
 ![Coin Details Screen](Screenshot_2024-11-19-23-59-18-62_7a14a39dca1d0f5115802ea3e4fb6dd7.jpg)

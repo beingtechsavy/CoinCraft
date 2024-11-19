@@ -5,6 +5,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -45,6 +46,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import coil.compose.rememberImagePainter
 
@@ -52,7 +54,8 @@ import coil.compose.rememberImagePainter
 @Composable
 fun LandingPage(
     modifier: Modifier = Modifier,
-    viewModel: CoinViewModel,
+    viewModel: CoinViewModel ,
+    navigatetoDetail: (Coin) -> Unit
 ) {
     val coins = viewModel.coins.collectAsState()
     Box(
@@ -87,7 +90,7 @@ fun LandingPage(
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(coins.value.size) { index ->
-                        CoinItem(coin = coins.value[index])
+                        CoinItem(coin = coins.value[index], navigatetoDetail)
                     }
                 }
             }
@@ -97,13 +100,16 @@ fun LandingPage(
 }
 
 @Composable
-fun CoinItem(coin: Coin) {
+fun CoinItem(coin: Coin,navigatetoDetail: (Coin) -> Unit) {
 
 
     Column(
         modifier = Modifier
             .padding(16.dp)
             .fillMaxSize()
+            .clickable {
+            navigatetoDetail(coin)
+        }
             .border(
                 border = BorderStroke(2.dp, Color(0xFF365BC9)),
                 shape = RoundedCornerShape(8.dp)
@@ -160,7 +166,6 @@ fun CoinItem(coin: Coin) {
 }
 
 
-
 @Composable
 fun CoinPriceDisplay(
     price: Double,
@@ -188,14 +193,17 @@ fun CoinPriceDisplay(
 }
 
 @Composable
-fun PriceChange(modifier: Modifier = Modifier, priceChange: Double) {
-    val color = if (priceChange > 0) Color(0xFF4CAF50) else Color(0xFFF44336) // Green for positive, red for negative
+fun PriceChange(
+    modifier: Modifier = Modifier,
+    priceChange: Double
+) {
+    val color = if (priceChange > 0) Color(0xFF4CAF50) else Color(0xFFF44336)
     val icon = if (priceChange > 0) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown
 
     Box(
         modifier = modifier
-            .background(color = color, shape = RoundedCornerShape(12.dp))
-            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .background(color = color, shape = RoundedCornerShape(16.dp))
+            .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -205,16 +213,20 @@ fun PriceChange(modifier: Modifier = Modifier, priceChange: Double) {
                 imageVector = icon,
                 contentDescription = null,
                 tint = Color.White,
-                modifier = Modifier.size(16.dp)
+                modifier = Modifier.size(24.dp)
             )
-            Spacer(modifier = Modifier.width(4.dp))
+            Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = "${String.format("%.2f", priceChange)}%",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.bodySmall
+                style = MaterialTheme.typography.bodyLarge
             )
         }
     }
 }
+
+
+
+
 
